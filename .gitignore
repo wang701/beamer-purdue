@@ -24,6 +24,12 @@ _minted*
 *.nav
 *.snm
 
+# latexmk files
+latexmk
+
+# output files
+out/*
+
 # OSX + Windows
 .DS_Store
 Thumbs.db
