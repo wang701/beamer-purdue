@@ -1,16 +1,17 @@
-% beamerthemepurduegold.sty
+% beamerthemepurduewhiteoats.sty
 %
-% The beamer-purdue "gold" theme
+% The beamer-purdue white theme adapted for Purdue OATS
 %
 % Copyright (c) 2016 Dennis Ogbe <dogbe@purdue.edu>
+% Modified: 2020 Yang Wang <wang701@purdue.edu>
 %
 % This file is published under the Creative Commons Attribution 4.0
 % International License. For more information, please visit
 % https://creativecommons.org/licenses/by/4.0/
 %
 % See the README.md for usage instructions. This style really only has one
-% option: When called with the "oatslogo" option, it will use the "Purdue
-% University" logo instead of the "Purdue Engineering" logo.
+% option: When called with the "sponsorlogo" option, the template page will add
+% a sponsor logo.
 %
 % TODO:
 %  - add section page
@@ -19,32 +20,31 @@
 % options ---------------------------------------------------------------------
 
 % parse the options: use the "Purdue Engineering" of "Purdue University" logo
-\newif\if@oatslogo
-\@oatslogofalse
-\DeclareOption{oatslogo}{\@oatslogotrue}
+\newif\if@sponsorlogo
+\@sponsorlogofalse
+\DeclareOption{sponsorlogo}{\@sponsorlogotrue}
 
 % process all options
 \ProcessOptions
 
 % set the logo
-\if@oatslogo
-\newcommand{\oatslogo}{./logos/oats.pdf}
-\else
-\newcommand{\oatslogo}{./logos/Eng-Black-Gold-rgb.pdf}
+\if@sponsorlogo
+\newcommand{\sponsorlogo}{./logos/sponsor.pdf}
+\else %FIXME: ece logo is enormous by default
+\newcommand{\sponsorlogo}{./logos/ece_logo.pdf}
 \fi
 
+\newcommand{\oatslogo}{./logos/oats.pdf}
+\newcommand{\purduelogo}{./logos/Eng-Black-Gold-rgb.pdf}
 
 \mode<presentation>{}
-
 
 % packages --------------------------------------------------------------------
 \RequirePackage[absolute,overlay]{textpos}
 \RequirePackage{calc}
 
-
 % fonts -----------------------------------------------------------------------
 \usefonttheme{professionalfonts}
-
 
 % colors ----------------------------------------------------------------------
 % main colors
@@ -68,7 +68,6 @@
 \definecolor{FountainRunTeal}{HTML}{2EAF9B}
 \definecolor{PappysPurple}{HTML}{AD1F65}
 
-
 % the frame title -------------------------------------------------------------
 % colors
 \setbeamercolor{CampusGold}{bg=CampusGold}
@@ -87,7 +86,6 @@
 \insertframetitle
 }%
 
-
 % bottom line -----------------------------------------------------------------
 % fonts
 \setbeamerfont{footernumber}{size=\small, series=\bfseries}
@@ -98,7 +96,7 @@
 % template
 \setbeamertemplate{footline}{%
   \hspace*{0.02\linewidth}
-  \includegraphics[width=0.20\linewidth]{\oatslogo}
+  \includegraphics[width=0.15\linewidth]{\oatslogo}
 \hfill
 \begin{beamercolorbox}[
   wd=0.1\linewidth,
@@ -111,7 +109,6 @@
   \insertframenumber{}
 \end{beamercolorbox}\hspace*{5pt}
 }%
-
 
 % itemizing colors ------------------------------------------------------------
 \useitemizeitemtemplate{%
@@ -134,7 +131,6 @@
   Part \inserttocsectionnumber: {\em \inserttocsection\/}
 }
 
-
 % block colors ----------------------------------------------------------------
 \definecolor{titleLine}{RGB}{224,220,217}
 \setbeamercolor{ttline}{bg=titleLine}
@@ -144,7 +140,6 @@
 
 % math proof color ------------------------------------------------------------
 \setbeamertemplate{qed symbol}{\color{Black} $\blacksquare$}
-
 
 % title page ------------------------------------------------------------------
 % colors
@@ -162,7 +157,11 @@
 
 % template
 \newlength{\oatslogowidth} % the size of the oats logo on the title page
-\setlength{\oatslogowidth}{0.3\linewidth}
+\setlength{\oatslogowidth}{0.22\linewidth}
+\newlength{\purduelogowidth} % the size of the purdue logo on the title page
+\setlength{\purduelogowidth}{0.27\linewidth}
+\newlength{\sponsorlogowidth} % the size of the custom logo on the title page
+\setlength{\sponsorlogowidth}{0.27\linewidth}
 
 \setbeamertemplate{title page}{%
 \vspace*{0.2\linewidth}
@@ -183,11 +182,18 @@
   \usebeamercolor[fg]{author} \noindent \textbf{\insertdate}
 \end{center}
 
+\begin{textblock*}{\purduelogowidth}(0pt, 0pt)%
+  \includegraphics[width=\purduelogowidth]{\purduelogo}
+\end{textblock*}
+
+\begin{textblock*}{\sponsorlogowidth}(175pt, 0pt)% %FIXME: center image
+  \includegraphics[width=\sponsorlogowidth]{\sponsorlogo}
+\end{textblock*}
+
 \begin{textblock*}{\oatslogowidth}(\paperwidth-\oatslogowidth, 0pt)%
   \includegraphics[width=\oatslogowidth]{\oatslogo}
 \end{textblock*}
 }%
-
 
 % bullets ---------------------------------------------------------------------
 \renewcommand{\bullet}{{\tiny\raise1.5pt\hbox{\color{Black}$\blacktriangleright$}}}

@@ -28,7 +28,7 @@ _minted*
 latexmk
 
 # output files
-out/*
+out
 
 # OSX + Windows
 .DS_Store
