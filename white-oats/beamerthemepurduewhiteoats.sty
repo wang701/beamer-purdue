@@ -15,7 +15,6 @@
 %
 % TODO:
 %  - add section page
-%  - add framesubtitle
 
 % options ---------------------------------------------------------------------
 
@@ -80,11 +79,17 @@
 % fonts
 \setbeamerfont{frametitle}{size=\Large, series=\bfseries}
 
-% template
-\setbeamertemplate{frametitle}{%
-\vspace*{15pt}
-\insertframetitle
-}%
+% frame title -----------------------------------------------------------------
+\setbeamertemplate{frametitle}{
+  \vspace{0.15cm}
+  {\usebeamercolor{frametitle}
+    \usebeamerfont{frametitle}
+    \insertframetitle}
+
+  {\usebeamercolor{framesubtitle}
+    \usebeamerfont{framesubtitle}
+    \insertframesubtitle}
+}
 
 % bottom line -----------------------------------------------------------------
 % fonts
