@@ -14,10 +14,6 @@
 % we want serif math fonts, they look better
 \documentclass[pdf, mathserif, aspectratio=169]{beamer}
 
-% load required packages. I prefer IEEEtran for equations, but that's a
-% personal preference.
-\usepackage{IEEEtrantools}
-
 \usepackage{pgf}  % PGF/TikZ is needed for nice plots
 
 \usepackage[cmex10]{mathtools} % for math equations
@@ -56,23 +52,15 @@
 
 \begin{frame}
   \frametitle{Hello!}
-  \framesubtitle{The \texttt{beamer-purdue} template}
+  \framesubtitle{The \texttt{beamer-purdue-oats} template}
 
-  This is the \texttt{beamer-purdue} Theme. A Beamer template inspired
-  by the Purdue Visual Identity.
+  This is the \texttt{beamer-purdue-oats} Theme.
 
   An itemized list looks as follows:
   \begin{itemize}
   \item Item 1
   \item Item 2
   \end{itemize}
-
-  The continuous-time Fourier Transform of a signal $x(t)$ is defined as
-
-  \begin{IEEEeqnarray}{rCl}
-    \label{eq:ft}
-    X(\omega) = \int_{-\infty}^{\infty} x(t)e^{-j\omega t}\ \mathrm{dt}
-  \end{IEEEeqnarray}
 
 \end{frame}
 
@@ -82,14 +70,18 @@
   \begin{theorem}
     The Bessel functions of the first kind $J_{v}(x)$ are the solutions to the
     Bessel differential equation
-    \begin{IEEEeqnarray}{rCl}
-      \label{eq:bessel}
-      x^{2} \frac{d^{2}\,y}{d\,x^{2}} + x \frac{d\,y}{d\,x} + \left( x^{2} - v^{2} \right)y = 0.
-    \end{IEEEeqnarray}
   \end{theorem}
-  \begin{IEEEproof}
-    Omitted.
-  \end{IEEEproof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A Definition in a Box}
+
+  \begin{varblock}{State-Space Representation}
+    A state-space representation is a mathematical model of a physical system as
+    a set of input, output and state variables related by first-order
+    differential equations or difference equations.
+  \end{varblock}
+
 \end{frame}
 
 \begin{frame}
